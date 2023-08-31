@@ -24,6 +24,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.HandlerList;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
@@ -40,7 +41,14 @@ public class DeluxeHubPlugin extends JavaPlugin {
     private ModuleManager moduleManager;
     private InventoryManager inventoryManager;
 
+    private static DeluxeHubPlugin instance;
+
+    public static DeluxeHubPlugin getInstance() {
+        return instance;
+    }
+
     public void onEnable() {
+        instance = this;
         long start = System.currentTimeMillis();
 
         getLogger().log(Level.INFO, " _   _            _          _    _ ");
@@ -103,6 +111,11 @@ public class DeluxeHubPlugin extends JavaPlugin {
 
         // Register BungeeCord channels
         getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
+        Plugin vitaTempus;
+        if((vitaTempus = Bukkit.getPluginManager().getPlugin("VitaTempus")) != null){
+            getLogger().log(Level.INFO, "VitaTempus detected... starting integration. {VitaTempus-" + vitaTempus.getDescription().getVersion() + "}");
+        }
 
         getLogger().log(Level.INFO, "");
         getLogger().log(Level.INFO, "Successfully loaded in " + (System.currentTimeMillis() - start) + "ms");

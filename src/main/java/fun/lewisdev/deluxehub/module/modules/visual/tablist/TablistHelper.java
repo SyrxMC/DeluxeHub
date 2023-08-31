@@ -5,6 +5,9 @@ import fun.lewisdev.deluxehub.DeluxeHubPlugin;
 import fun.lewisdev.deluxehub.utility.TextUtil;
 import fun.lewisdev.deluxehub.utility.reflection.ReflectionUtils;
 import fun.lewisdev.deluxehub.utility.universal.XMaterial;
+import io.github.cruciblemc.vitatempus.VitaTempus;
+import io.github.cruciblemc.vitatempus.necrotempus.NecroTempus;
+import io.github.cruciblemc.vitatempus.packets.PlayerTab;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -20,6 +23,12 @@ public class TablistHelper {
                 "" : TextUtil.color(header).replace("%player%", player.getDisplayName());
         footer = Strings.isNullOrEmpty(footer) ?
                 "" : TextUtil.color(footer).replace("%player%", player.getDisplayName());
+
+        if(NecroTempus.getInstance().hasNecroTempus(player)){
+            PlayerTab playerTab = PlayerTab.of(header, footer);
+            VitaTempus.getInstance().getNecroTempusPacketDeliver().deliverTo(player, playerTab);
+            return;
+        }
 
         if(XMaterial.supports(13)) {
             player.setPlayerListHeaderFooter(header, footer);

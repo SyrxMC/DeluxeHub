@@ -286,7 +286,7 @@ public class WorldProtect extends Module {
         if (event.getCause() == BlockIgniteEvent.IgniteCause.SPREAD) event.setCancelled(true);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onFoodChange(FoodLevelChangeEvent event) {
         if (!hungerLoss) return;
 
@@ -297,7 +297,7 @@ public class WorldProtect extends Module {
         event.setCancelled(true);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDropEvent(PlayerDropItemEvent event) {
         if (!itemDrop) return;
 
@@ -313,7 +313,7 @@ public class WorldProtect extends Module {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerPickupEvent(PlayerPickupItemEvent event) {
         if (!itemPickup) return;
 
@@ -327,14 +327,14 @@ public class WorldProtect extends Module {
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onLeafDecay(LeavesDecayEvent event) {
         if (!leafDecay) return;
         if (inDisabledWorld(event.getBlock().getLocation())) return;
         event.setCancelled(true);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onCreatureSpawn(CreatureSpawnEvent event) {
         if (!mobSpawning) return;
         if (inDisabledWorld(event.getEntity().getLocation())) return;
@@ -342,19 +342,19 @@ public class WorldProtect extends Module {
         event.setCancelled(true);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onWeatherChange(WeatherChangeEvent event) {
         if (!weatherChange || inDisabledWorld(event.getWorld())) return;
         event.setCancelled(event.toWeatherState());
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerDeath(PlayerDeathEvent event) {
         if (!deathMessage || inDisabledWorld(event.getEntity().getLocation())) return;
         event.setDeathMessage(null);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamage(EntityDamageByEntityEvent event) {
         if (!playerPvP) return;
 
@@ -370,4 +370,11 @@ public class WorldProtect extends Module {
             Messages.EVENT_PLAYER_PVP.send(player);
         }
     }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onBlockFromTo(BlockFromToEvent event){
+        if(event.getBlock().getType() == Material.DRAGON_EGG)
+            event.setCancelled(true);
+    }
+
 }

@@ -5,6 +5,9 @@ import fun.lewisdev.deluxehub.action.Action;
 import fun.lewisdev.deluxehub.utility.TextUtil;
 import fun.lewisdev.deluxehub.utility.reflection.Titles;
 import fun.lewisdev.deluxehub.utility.universal.XMaterial;
+import io.github.cruciblemc.vitatempus.VitaTempus;
+import io.github.cruciblemc.vitatempus.necrotempus.NecroTempus;
+import io.github.cruciblemc.vitatempus.packets.Title;
 import org.bukkit.entity.Player;
 
 public class TitleAction implements Action {
@@ -32,6 +35,12 @@ public class TitleAction implements Action {
             fadeIn = 1;
             stay = 3;
             fadeOut = 1;
+        }
+
+        if (NecroTempus.getInstance().hasNecroTempus(player)) {
+            Title title = Title.of(fadeIn * 1000, stay * 1000, fadeOut * 1000, mainTitle, subTitle);
+            VitaTempus.getInstance().getNecroTempusPacketDeliver().deliverTo(player, title);
+            return;
         }
 
         if (XMaterial.supports(10)) {

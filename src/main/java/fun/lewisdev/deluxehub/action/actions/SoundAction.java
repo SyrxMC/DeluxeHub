@@ -18,7 +18,7 @@ public class SoundAction implements Action {
         try {
             player.playSound(player.getLocation(), XSound.matchXSound(data).get().parseSound(), 1L, 1L);
         } catch (Exception ex) {
-            Bukkit.getLogger().warning("[DeluxeHub Action] Invalid sound name: " + data.toUpperCase());
+            DeluxeHubPlugin.getInstance().getLogger().warning("[DeluxeHub Action] Invalid sound name: " + data.toUpperCase());
         }
     }
 }
