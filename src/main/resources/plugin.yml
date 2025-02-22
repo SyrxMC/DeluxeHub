@@ -7,8 +7,7 @@ api-version: 1.13
 main: fun.lewisdev.deluxehub.DeluxeHubPlugin
 loadbefore: [Essentials]
 softdepend: [PlaceholderAPI, HeadDatabase, Multiverse-Core]
-depend:
-  - VitaTempus
+depend: [VitaTempus]
 permissions:
   deluxehub.*:
     description: Gives access to all DeluxeHub permissions

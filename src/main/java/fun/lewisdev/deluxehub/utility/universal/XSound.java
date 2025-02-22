@@ -21,7 +21,6 @@
  */
 package fun.lewisdev.deluxehub.utility.universal;
 
-import com.google.common.base.Enums;
 import com.google.common.base.Strings;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

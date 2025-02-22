@@ -171,9 +171,9 @@
         <dependency>
             <groupId>io.github.cruciblemc</groupId>
             <artifactId>vitatempus</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/flatLibs/VitaTempus-1.0.0.jar</systemPath>
+            <systemPath>${project.basedir}/flatLibs/VitaTempus-1.0.1.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

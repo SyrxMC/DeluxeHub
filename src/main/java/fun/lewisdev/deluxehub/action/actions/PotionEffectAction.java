@@ -6,8 +6,6 @@ import fun.lewisdev.deluxehub.utility.universal.XPotion;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 
-import java.util.logging.Level;
-
 public class PotionEffectAction implements Action {
 
     @Override

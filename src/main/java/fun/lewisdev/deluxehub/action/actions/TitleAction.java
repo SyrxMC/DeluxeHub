@@ -6,7 +6,6 @@ import fun.lewisdev.deluxehub.utility.TextUtil;
 import fun.lewisdev.deluxehub.utility.reflection.Titles;
 import fun.lewisdev.deluxehub.utility.universal.XMaterial;
 import io.github.cruciblemc.vitatempus.VitaTempus;
-import io.github.cruciblemc.vitatempus.necrotempus.NecroTempus;
 import io.github.cruciblemc.vitatempus.packets.Title;
 import org.bukkit.entity.Player;
 
@@ -19,6 +18,7 @@ public class TitleAction implements Action {
 
     @Override
     public void execute(DeluxeHubPlugin plugin, Player player, String data) {
+
         String[] args = data.split(";");
 
         String mainTitle = TextUtil.color(args[0]);
@@ -37,11 +37,9 @@ public class TitleAction implements Action {
             fadeOut = 1;
         }
 
-        if (NecroTempus.getInstance().hasNecroTempus(player)) {
-            Title title = Title.of(fadeIn * 1000, stay * 1000, fadeOut * 1000, mainTitle, subTitle);
-            VitaTempus.getInstance().getNecroTempusPacketDeliver().deliverTo(player, title);
-            return;
-        }
+        Title title = Title.of(fadeIn * 1000, stay * 1000, fadeOut * 1000, mainTitle, subTitle);
+
+        VitaTempus.getInstance().getNecroTempusPacketDeliver().deliverTo(player, title);
 
         if (XMaterial.supports(10)) {
             player.sendTitle(mainTitle, subTitle, fadeIn * 20, stay * 20, fadeOut * 20);
